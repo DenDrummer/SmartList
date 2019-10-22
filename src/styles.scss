@@ -1,1 +1,104 @@
-/* You can add global styles to this file, and also import other style files */
+@import "variables";
+
+@font-face {
+  font-family: Architext;
+  src: url("assets/fonts/architext/Architex.ttf");
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: $main-bg;
+}
+
+html, body, app-root {
+  height: calc(100vh - 25px);
+  overflow: hidden;
+}
+
+app-root {
+  display: block;
+  height: 100%;
+
+  #overlay {
+    #header {
+      background-color: $menu-bg;
+      height: 50px;
+
+      #topContainer {
+        display: flex;
+        justify-content: space-evenly;
+        max-width: 500px;
+        height: 100%;
+        align-items: center;
+
+        #logo {
+          padding-top: 15px;
+          font-family: Architext, fantasy;
+          font-size: 50px;
+          color: $logo-color;
+          //background-image: ;
+        }
+
+        #slogan {
+          color: $slogan-color;
+          visibility: hidden;
+        }
+      }
+    }
+
+    #main {
+
+      #sidebar {
+      }
+
+      #content {
+      }
+    }
+  }
+
+  .overlay {
+    background-color: #0002;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+  }
+
+  .blur {
+    z-index: 1;
+    filter: $blur;
+    -o-filter: $blur;
+    -ms-filter: $blur;
+    -moz-filter: $blur;
+    -webkit-filter: $blur;
+  }
+
+  #overlayToggle {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    width: 25px;
+    height: 25px;
+    z-index: 2;
+  }
+}
+
+@media screen and (min-width: 350px) {
+  app-root {
+
+    #overlay {
+      #header {
+
+        #topContainer {
+
+          #slogan {
+            visibility: visible;
+          }
+        }
+      }
+    }
+  }
+}
