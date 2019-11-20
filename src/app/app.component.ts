@@ -18,6 +18,7 @@ export class AppComponent implements OnInit{
   showOverlay = false;
   showSidebar = false;
   windowWidth: number;
+  shownList: number = null;
 
   ngOnInit(): void {
     this.windowWidth = window.innerWidth;

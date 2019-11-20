@@ -1,3 +1,31 @@
-<p>
-  to-do-list works!
-</p>
+<mat-table>
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>Done</th>
+    <th *ngFor="let param of list.parameters">{{param.name}}</th>
+    <th>
+      <div>+</div>
+    </th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let item of list.items; let index = index ">
+    <td>{{index}}</td>
+    <td>checkbox</td>
+    <td *ngFor="let param of item.parameters">
+      <div *ngIf="param.type === 'Checkbox'">checkbox</div>
+      <div *ngIf="param.type === 'Image'">image</div>
+      <div *ngIf="param.type === 'Text'">text</div>
+      <div *ngIf="param.type === 'Title'">title</div>
+    </td>
+  </tr>
+  </tbody>
+  <tfoot>
+  <tr>
+    <th [attr.colspan]="list.parameters.length + 1">
+      <div style="width: 100%;">+ New item</div>
+    </th>
+  </tr>
+  </tfoot>
+</mat-table>
