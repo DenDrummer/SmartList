@@ -6,6 +6,7 @@
   #header {
     background-color: $menu-bg;
     height: 50px;
+    overflow: hidden;
 
     #topContainer {
       display: flex;
@@ -13,6 +14,7 @@
       max-width: 500px;
       height: 100%;
       align-items: center;
+      overflow: hidden;
 
       #logo {
         padding-top: 15px;
@@ -36,6 +38,7 @@
 
     #content {
       height: 100vh;
+      position: relative;
     }
   }
 }

@@ -3,6 +3,7 @@ import {ToDoList} from "../../model/to-do-list";
 import {TitleParam} from "../../model/ParamTypes/title-param";
 import {TextParam} from "../../model/ParamTypes/text-param";
 import {ImageParam} from "../../model/ParamTypes/image-param";
+import {MatTable} from "@angular/material/table";
 
 @Component({
   selector: 'app-to-do-list',

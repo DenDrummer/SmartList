@@ -1,0 +1,61 @@
+@import "src/variables";
+
+#listTitle {
+  float: left;
+  margin: 8px;
+  font-weight: bold;
+  font-size: 1.5em;
+}
+
+#configButton {
+  float: right;
+  margin: 10px;
+  width: 150px;
+  text-align: center;
+  font-weight: bold;
+  padding: 3px;
+  border-radius: 10px;
+  background-color: $button-bg;
+}
+
+#todoList {
+  margin: 10px;
+  border-collapse: collapse;
+  width: calc(100% - 20px);
+
+  * {
+    padding: 2px;
+  }
+
+  thead {
+    background-color: $slogan-color;
+  }
+
+  thead, tbody {
+    border: 2px solid $logo-color;
+  }
+
+  tfoot {
+    th {
+      height: 24px;
+      position: relative;
+
+      div {
+        position: absolute;
+        top: 3px;
+        left: calc(50% - 75px);
+        background-color: $button-bg;
+        width: 150px;
+        border-radius: 10px;
+      }
+    }
+  }
+
+  .oddCol, .oddRow {
+    background-color: $odd-bg;
+  }
+
+  .evenCol, .evenRow {
+    background-color: $even-bg;
+  }
+}

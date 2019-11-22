@@ -12,18 +12,18 @@ export class ToDoList {
       if (!this.checkExistingParams(param)) {
         this.parameters.push(param);
         console.log("param added to list");
-        if (this.items.length > 0) {
-          for (let item of this.items) {
-            item.addParam(param);
-          }
-          console.log("param added to items");
-        }
+        this.addParamToItems(param);
       }
     }
   }
 
   private addParamToItems(param: ToDoParam) {
-
+    if (this.items.length > 0) {
+      for (let item of this.items) {
+        item.addParam(param);
+      }
+      console.log("param added to items");
+    }
   }
 
   private checkExistingParams(param: ToDoParam) {

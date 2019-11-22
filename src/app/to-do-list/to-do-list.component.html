@@ -1,31 +1,43 @@
-<mat-table>
+<div id="listTitle">List Title</div>
+<div id="configButton">Configure list</div>
+<table id="todoList">
   <thead>
   <tr>
-    <th>ID</th>
-    <th>Done</th>
-    <th *ngFor="let param of list.parameters">{{param.name}}</th>
-    <th>
-      <div>+</div>
-    </th>
+    <th class="evenCol">ID</th>
+    <th class="oddCol">Done</th>
+    <th *ngFor="let param of list.parameters; let oddCol = odd; let evenCol = even;"
+        [ngClass]="{oddCol: oddCol, evenCol: evenCol}">{{param.name}}</th>
   </tr>
   </thead>
+
   <tbody>
-  <tr *ngFor="let item of list.items; let index = index ">
-    <td>{{index}}</td>
-    <td>checkbox</td>
-    <td *ngFor="let param of item.parameters">
-      <div *ngIf="param.type === 'Checkbox'">checkbox</div>
-      <div *ngIf="param.type === 'Image'">image</div>
-      <div *ngIf="param.type === 'Text'">text</div>
-      <div *ngIf="param.type === 'Title'">title</div>
+  <tr *ngFor="let item of list.items; let index = index; let oddRow = odd; let evenRow = even;"
+      [ngClass]="{oddRow: oddRow, evenRow: evenRow}">
+    <td class="evenCol">{{index}}</td>
+    <td class="oddCol">checkbox</td>
+    <td *ngFor="let param of item.parameters; let oddCol = odd; let evenCol = even;"
+        [ngClass]="{oddCol: oddCol, evenCol: evenCol}">
+      <div *ngIf="param.type === 'Checkbox'"
+           class="checkboxParam">checkbox
+      </div>
+      <div *ngIf="param.type === 'Image'"
+           class="imageParam">image
+      </div>
+      <div *ngIf="param.type === 'Text'"
+           class="textParam">text
+      </div>
+      <div *ngIf="param.type === 'Title'"
+           class="titleParam">title
+      </div>
     </td>
   </tr>
   </tbody>
+
   <tfoot>
   <tr>
-    <th [attr.colspan]="list.parameters.length + 1">
-      <div style="width: 100%;">+ New item</div>
+    <th [attr.colspan]="list.parameters.length + 2">
+      <div>+ New item</div>
     </th>
   </tr>
   </tfoot>
-</mat-table>
+</table>
