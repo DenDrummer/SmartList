@@ -31,7 +31,8 @@
     background-color: $slogan-color;
   }
 
-  thead, tbody {
+  thead,
+  tbody {
     border: 2px solid $logo-color;
   }
 
@@ -51,11 +52,13 @@
     }
   }
 
-  .oddCol, .oddRow {
+  .oddCol,
+  .oddRow {
     background-color: $odd-bg;
   }
 
-  .evenCol, .evenRow {
+  .evenCol,
+  .evenRow {
     background-color: $even-bg;
   }
 }

@@ -33,9 +33,6 @@
   #main {
     height: calc(100% - 50px);
 
-    #sidebar {
-    }
-
     #content {
       height: 100vh;
       position: relative;
@@ -71,9 +68,7 @@
 @media screen and (min-width: 350px) {
   #overlay {
     #header {
-
       #topContainer {
-
         #slogan {
           visibility: visible;
         }
