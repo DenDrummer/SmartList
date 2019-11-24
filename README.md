@@ -1,3 +1,4 @@
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/cdcd5c8f56bd4135851a5aea815214ae)](https://www.codacy.com?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=DenDrummer/SmartList&amp;utm_campaign=Badge_Grade)
 # SmartList
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.1.0.
