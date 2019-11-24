@@ -2,8 +2,13 @@ import {ToDoItem} from "./to-do-item";
 import {ToDoParam} from "./to-do-param";
 
 export class ToDoList {
+  title: string;
   items: ToDoItem[] = [];
   parameters: ToDoParam[] = [];
+
+  constructor(title: string) {
+    this.title = title;
+  }
 
   public addParam(param: ToDoParam) {
     console.log("attempting to add param:");
@@ -37,7 +42,7 @@ export class ToDoList {
     return existingParam;
   }
 
-  public createItem(id: number) {
-    return new ToDoItem(id, false, JSON.parse(JSON.stringify(this.parameters)));
+  public createItem() {
+    return new ToDoItem(false, JSON.parse(JSON.stringify(this.parameters)));
   }
 }

@@ -1,9 +1,8 @@
-<div id="listTitle">List Title</div>
+<div id="listTitle">{{list.title}}</div>
 <div id="configButton">Configure list</div>
-<table id="todoList">
+<!--<table id="todoList">
   <thead>
   <tr>
-    <th class="evenCol">ID</th>
     <th class="oddCol">Done</th>
     <th *ngFor="let param of list.parameters; let oddCol = odd; let evenCol = even;"
         [ngClass]="{oddCol: oddCol, evenCol: evenCol}">{{param.name}}</th>
@@ -11,9 +10,8 @@
   </thead>
 
   <tbody>
-  <tr *ngFor="let item of list.items; let index = index; let oddRow = odd; let evenRow = even;"
+  <tr *ngFor="let item of list.items; let oddRow = odd; let evenRow = even;"
       [ngClass]="{oddRow: oddRow, evenRow: evenRow}">
-    <td class="evenCol">{{index}}</td>
     <td class="oddCol">checkbox</td>
     <td *ngFor="let param of item.parameters; let oddCol = odd; let evenCol = even;"
         [ngClass]="{oddCol: oddCol, evenCol: evenCol}">
@@ -40,4 +38,12 @@
     </th>
   </tr>
   </tfoot>
+</table>-->
+<table mat-table [dataSource]="list.items">
+  <ng-container matColumnDef="Done">
+    <th mat-header-cell *matHeaderCellDef>Done</th>
+    <td mat-cell *matCellDef="let item">{{item.done}}</td>
+  </ng-container>
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 </table>

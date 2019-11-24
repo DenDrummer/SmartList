@@ -1,13 +1,24 @@
-<button id="overlayToggle" (click)="toggleOverlay()" hidden>O</button>
-<div id="overlay" [@toggleOverlay]="showOverlay" [class.overlay]="showOverlay" [class.blur]="showOverlay">
+<button (click)="toggleOverlay()"
+        hidden
+        id="overlayToggle">O
+</button>
+<div [@toggleOverlay]="showOverlay"
+     [class.blur]="showOverlay"
+     [class.overlay]="showOverlay"
+     id="overlay">
   <div id="header">
     <div id="topContainer">
       <div id="logo">{{name}}</div>
-      <div id="slogan" *ngIf="windowWidth >= 350">Leader in customizable to do lists</div>
+      <div *ngIf="windowWidth >= 350"
+           id="slogan">Leader in customizable to do lists
+      </div>
     </div>
   </div>
   <div id="main">
-    <app-sidebar id="sidebar" *ngIf="showSidebar"></app-sidebar>
-    <app-to-do-list id="content"></app-to-do-list>
+    <app-sidebar *ngIf="showSidebar"
+                 id="sidebar"></app-sidebar>
+    <app-to-do-list *ngIf="lists[shownList] !== undefined && lists[shownList] !== null"
+                    [list]="lists[shownList]"
+                    id="content"></app-to-do-list>
   </div>
 </div>

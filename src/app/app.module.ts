@@ -8,6 +8,7 @@ import {SidebarComponent} from './sidebar/sidebar.component';
 import {SidebarItemComponent} from './sidebar/sidebar-item/sidebar-item.component';
 import {ToDoListComponent} from './to-do-list/to-do-list.component';
 import {MatTableModule} from "@angular/material/table";
+import {MatSortModule} from "@angular/material/sort";
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import {MatTableModule} from "@angular/material/table";
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    MatTableModule
+    MatTableModule,
+    MatSortModule
   ],
   providers: [],
   bootstrap: [
