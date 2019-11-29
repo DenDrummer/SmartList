@@ -11,12 +11,12 @@ export class ToDoList {
   }
 
   public addParam(param: ToDoParam) {
-    console.log("attempting to add param:");
-    console.log(param);
+    console.info("adding param");
+    console.debug(param);
     if (param.name !== "Done") {
-      if (!this.checkExistingParams(param)) {
+      if (!this.isExistingParam(param)) {
         this.parameters.push(param);
-        console.log("param added to list");
+        console.info("param added to list");
         this.addParamToItems(param);
       }
     }
@@ -27,12 +27,12 @@ export class ToDoList {
       for (let item of this.items) {
         item.addParam(param);
       }
-      console.log("param added to items");
+      console.info("param added to items");
     }
   }
 
-  private checkExistingParams(param: ToDoParam) {
-    console.log("testing param:");
+  isExistingParam(param: ToDoParam) {
+    console.info("testing param:");
     let existingParam = false;
     for (let i = 0; i < this.parameters.length && !existingParam; i++) {
       if (this.parameters[i].name === param.name) {
@@ -42,7 +42,18 @@ export class ToDoList {
     return existingParam;
   }
 
+  findParam(paramName: string) {
+    for (let i = 0; i < this.parameters.length; i++) {
+      if (this.parameters[i].name === paramName) {
+        return this.parameters[i];
+      }
+    }
+    return null;
+  }
+
   public createItem() {
-    return new ToDoItem(false, JSON.parse(JSON.stringify(this.parameters)));
+    const newItem =new ToDoItem(false, JSON.parse(JSON.stringify(this.parameters)));
+    this.items.push(newItem);
+    return newItem;
   }
 }

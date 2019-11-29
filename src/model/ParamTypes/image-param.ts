@@ -1,7 +1,7 @@
 import {ToDoParam} from "../to-do-param";
 
 export class ImageParam extends ToDoParam {
-  image?: File;
+  value?: File;
   type = "Image";
   typeDesc = "Field for an image";
 }

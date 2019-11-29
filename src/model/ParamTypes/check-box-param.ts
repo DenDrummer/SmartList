@@ -1,7 +1,7 @@
 import {ToDoParam} from "../to-do-param";
 
 export class CheckBoxParam extends ToDoParam {
-  checked: boolean;
+  value: boolean;
   type = "Checkbox";
   typeDesc = "Field for a simple checkbox";
 }

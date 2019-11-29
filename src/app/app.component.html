@@ -8,7 +8,7 @@
      id="overlay">
   <div id="header">
     <div id="topContainer">
-      <div id="logo">{{name}}</div>
+      <div id="logo">Listom</div>
       <div *ngIf="windowWidth >= 350"
            id="slogan">Leader in customizable to do lists
       </div>
@@ -17,6 +17,10 @@
   <div id="main">
     <app-sidebar *ngIf="showSidebar"
                  id="sidebar"></app-sidebar>
+    <app-list-overview (listSelected)="selectList($event)"
+                       [lists]="lists"
+                       [selectedList]="shownList"
+                       id="listOverview"></app-list-overview>
     <app-to-do-list *ngIf="lists[shownList] !== undefined && lists[shownList] !== null"
                     [list]="lists[shownList]"
                     id="content"></app-to-do-list>

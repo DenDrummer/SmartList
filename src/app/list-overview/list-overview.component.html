@@ -1,0 +1,11 @@
+<h1>Lists</h1>
+<div id="listContainer">
+  <div *ngIf="lists.length === 0"
+       id="noListsIndicator">
+    You don't have any lists yet
+  </div>
+  <app-list-card (click)="select(index)"
+                 *ngFor="let list of lists; let index = index"
+                 [class.selected]="index === selectedList"
+                 [list]="list"></app-list-card>
+</div>

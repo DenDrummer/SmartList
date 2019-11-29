@@ -1,49 +1,57 @@
-<div id="listTitle">{{list.title}}</div>
+<h1 id="listTitle">{{list.title}}</h1>
 <div id="configButton">Configure list</div>
-<!--<table id="todoList">
+
+<table (matSortChange)="sortData($event)"
+       id="todoList"
+       matSort>
   <thead>
   <tr>
-    <th class="oddCol">Done</th>
+    <th class="oddCol CheckboxColumn"
+        mat-sort-header="Done">
+      Done
+    </th>
     <th *ngFor="let param of list.parameters; let oddCol = odd; let evenCol = even;"
+        [class]="param.type+'Column'"
+        [mat-sort-header]="param.name"
         [ngClass]="{oddCol: oddCol, evenCol: evenCol}">{{param.name}}</th>
   </tr>
   </thead>
-
-  <tbody>
-  <tr *ngFor="let item of list.items; let oddRow = odd; let evenRow = even;"
-      [ngClass]="{oddRow: oddRow, evenRow: evenRow}">
-    <td class="oddCol">checkbox</td>
-    <td *ngFor="let param of item.parameters; let oddCol = odd; let evenCol = even;"
-        [ngClass]="{oddCol: oddCol, evenCol: evenCol}">
+  <tbody cdkScrollable>
+  <tr *ngFor="let item of sortedList; let oddRow = odd; let evenRow = even; let itemIndex = index;"
+      [ngClass]="{oddRow:oddRow,evenRow:evenRow}">
+    <td class="oddCol checkboxParam">
+      <label>
+        <input (change)="checkDone(itemIndex, $event)"
+               [checked]="item.done.value" type="checkbox">
+      </label>
+    </td>
+    <td *ngFor="let param of item.parameters; let oddCol = odd; let evenCol = even; let paramIndex = index;"
+        [ngClass]="{oddCol: oddCol, evenCol: evenCol, hmm: param.type}">
       <div *ngIf="param.type === 'Checkbox'"
-           class="checkboxParam">checkbox
+           class="checkboxParam">
+        <label>
+          <input (change)="checkCheckbox(itemIndex, paramIndex, $event)"
+                 [checked]="param.value" type="checkbox">
+        </label>
       </div>
       <div *ngIf="param.type === 'Image'"
-           class="imageParam">image
+           class="imageParam">
+        <div class="imgDiv"></div>
       </div>
       <div *ngIf="param.type === 'Text'"
-           class="textParam">text
+           class="textParam">param.value
       </div>
       <div *ngIf="param.type === 'Title'"
-           class="titleParam">title
+           class="titleParam">{{param.value}}
       </div>
     </td>
   </tr>
   </tbody>
-
   <tfoot>
   <tr>
-    <th [attr.colspan]="list.parameters.length + 2">
+    <th [attr.colspan]="list.parameters.length + 1">
       <div>+ New item</div>
     </th>
   </tr>
   </tfoot>
-</table>-->
-<table mat-table [dataSource]="list.items">
-  <ng-container matColumnDef="Done">
-    <th mat-header-cell *matHeaderCellDef>Done</th>
-    <td mat-cell *matCellDef="let item">{{item.done}}</td>
-  </ng-container>
-  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 </table>

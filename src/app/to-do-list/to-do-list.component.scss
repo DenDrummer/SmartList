@@ -3,8 +3,6 @@
 #listTitle {
   float: left;
   margin: 8px;
-  font-weight: bold;
-  font-size: 1.5em;
 }
 
 #configButton {
@@ -29,11 +27,47 @@
 
   thead {
     background-color: $slogan-color;
+
+    .CheckboxColumn {
+      width: 100px;
+    }
+
+    .ImageColumn {
+      width: 110px;
+    }
   }
 
   thead,
   tbody {
     border: 2px solid $logo-color;
+  }
+
+  tbody {
+
+    tr {
+
+      .checkboxParam {
+        text-align: center;
+
+        label {
+
+        }
+      }
+
+      .imageParam {
+        height: 110px;
+        padding: 5px;
+        display: flex;
+        justify-content: center;
+
+        .imgDiv{
+          background-color: $slogan-color;
+          width: 100px;
+          height: 100px;
+          border-radius: 5px;
+        }
+      }
+    }
   }
 
   tfoot {

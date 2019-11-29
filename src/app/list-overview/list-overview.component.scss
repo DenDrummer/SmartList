@@ -1,0 +1,22 @@
+@import "src/variables.scss";
+
+h1 {
+  margin: 8px;
+}
+
+#listContainer {
+  margin: 4px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+
+  app-list-card {
+    padding: 5px;
+    margin: 4px;
+    border-radius: 10px;
+    height: 100px;
+    width: 100px;
+    background-color: $menu-bg;
+    cursor: pointer;
+  }
+}

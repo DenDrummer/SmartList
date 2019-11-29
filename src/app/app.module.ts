@@ -9,19 +9,25 @@ import {SidebarItemComponent} from './sidebar/sidebar-item/sidebar-item.componen
 import {ToDoListComponent} from './to-do-list/to-do-list.component';
 import {MatTableModule} from "@angular/material/table";
 import {MatSortModule} from "@angular/material/sort";
+import { ListOverviewComponent } from './list-overview/list-overview.component';
+import { ListCardComponent } from './list-overview/list-card/list-card.component';
+import {ScrollingModule} from "@angular/cdk/typings/esm5/scrolling";
 
 @NgModule({
   declarations: [
     AppComponent,
     SidebarComponent,
     SidebarItemComponent,
-    ToDoListComponent
+    ToDoListComponent,
+    ListOverviewComponent,
+    ListCardComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     MatTableModule,
-    MatSortModule
+    MatSortModule,
+    ScrollingModule
   ],
   providers: [],
   bootstrap: [
