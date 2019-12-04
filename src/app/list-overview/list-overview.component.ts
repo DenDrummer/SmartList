@@ -24,8 +24,6 @@ export class ListOverviewComponent implements OnInit {
   select(list: number) {
     console.debug("opening list " + list);
     console.debug("selected list " + this.selectedList);
-    if (list !== this.selectedList) {
-      this.listSelected.emit(list);
-    }
+    this.listSelected.emit(list);
   }
 }

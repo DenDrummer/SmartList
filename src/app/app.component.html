@@ -21,8 +21,13 @@
                        [lists]="lists"
                        [selectedList]="shownList"
                        id="listOverview"></app-list-overview>
-    <app-to-do-list *ngIf="lists[shownList] !== undefined && lists[shownList] !== null"
+    <app-to-do-list *ngIf="lists[shownList] !== undefined && lists[shownList] !== null; else listHidden"
                     [list]="lists[shownList]"
                     id="content"></app-to-do-list>
+    <ng-template #listHidden>
+      <div *ngIf="lists.length > 0"
+           id="noListSelectedIndicator">Please select a list
+      </div>
+    </ng-template>
   </div>
 </div>

@@ -45,7 +45,12 @@ export class AppComponent implements OnInit {
 
   selectList(list: number) {
     console.debug("list has been selected: " + list);
-    this.shownList = list;
+    if (list === this.shownList){
+      this.shownList = null;
+    }
+    else {
+      this.shownList = list;
+    }
   }
 
   private createDefault() {
@@ -55,10 +60,14 @@ export class AppComponent implements OnInit {
       this.lists.push(newList);
 
       //region --- params ---
-      const paramCount = Math.round(Math.random() * 3 + 1);
+      const minParams = 1;
+      const maxParams = 4 - minParams;
+      const paramtypeCount = 3;
+
+      const paramCount = Math.round(Math.random() * maxParams + minParams);
       console.info(newList.title + " params: " + paramCount);
       for (let paramI = 0; paramI < paramCount; paramI++) {
-        const paramType = Math.round(Math.random() * 3);
+        const paramType = Math.round(Math.random() * paramtypeCount);
         switch (paramType) {
           case 0:
             newList.addParam(new CheckBoxParam("cb " + paramI));
@@ -77,7 +86,10 @@ export class AppComponent implements OnInit {
       //endregion
 
       //region --- items ---
-      const itemCount = Math.round(Math.random() * 20 + 5);
+      const minItems = 3;
+      const maxItems = 5 - minItems;
+
+      const itemCount = Math.round(Math.random() * maxItems + minItems);
       console.info(newList.title + " items: " + itemCount);
       for (let itemI = 0; itemI < itemCount; itemI++) {
         const newItem = newList.createItem();

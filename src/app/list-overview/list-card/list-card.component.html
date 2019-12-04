@@ -1,2 +1,8 @@
-<h2>{{donePercentage}}%</h2>
-<h3>{{list.title}}</h3>
+<h2 [class.done]="list.percentageDone()==100"
+    [class.selected]="selected">
+  {{list.percentageDone()}}%
+</h2>
+<h3 [class.done]="list.percentageDone()==100"
+    [class.selected]="selected">
+  {{list.title}}
+</h3>

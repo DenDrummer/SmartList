@@ -16,13 +16,14 @@
         [ngClass]="{oddCol: oddCol, evenCol: evenCol}">{{param.name}}</th>
   </tr>
   </thead>
-  <tbody cdkScrollable>
+  <tbody> <!--TODO: make scrollable-->
   <tr *ngFor="let item of sortedList; let oddRow = odd; let evenRow = even; let itemIndex = index;"
-      [ngClass]="{oddRow:oddRow,evenRow:evenRow}">
+      [ngClass]="{oddRow: oddRow, evenRow: evenRow, oddDone: oddRow && item.done.value, evenDone: evenRow && item.done.value}">
     <td class="oddCol checkboxParam">
       <label>
         <input (change)="checkDone(itemIndex, $event)"
-               [checked]="item.done.value" type="checkbox">
+               [checked]="item.done.value"
+               type="checkbox">
       </label>
     </td>
     <td *ngFor="let param of item.parameters; let oddCol = odd; let evenCol = even; let paramIndex = index;"

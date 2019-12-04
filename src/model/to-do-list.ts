@@ -22,15 +22,6 @@ export class ToDoList {
     }
   }
 
-  private addParamToItems(param: ToDoParam) {
-    if (this.items.length > 0) {
-      for (let item of this.items) {
-        item.addParam(param);
-      }
-      console.info("param added to items");
-    }
-  }
-
   isExistingParam(param: ToDoParam) {
     console.info("testing param:");
     let existingParam = false;
@@ -52,8 +43,28 @@ export class ToDoList {
   }
 
   public createItem() {
-    const newItem =new ToDoItem(false, JSON.parse(JSON.stringify(this.parameters)));
+    const newItem = new ToDoItem(false, JSON.parse(JSON.stringify(this.parameters)));
     this.items.push(newItem);
     return newItem;
+  }
+
+  public percentageDone() {
+    if (this.items.length > 0) {
+      const doneItems = this.items.filter(function (item) {
+        return item.done.value;
+      }).length;
+      return Math.round(doneItems / this.items.length * 1000) / 10;
+    } else {
+      return 100;
+    }
+  }
+
+  private addParamToItems(param: ToDoParam) {
+    if (this.items.length > 0) {
+      for (let item of this.items) {
+        item.addParam(param);
+      }
+      console.info("param added to items");
+    }
   }
 }

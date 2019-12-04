@@ -1,9 +1,14 @@
 @import "src/variables.scss";
 
-h2 {
+h2,
+h3 {
   color: $slogan-color;
 }
 
-h3 {
-  color: $slogan-color;
+.selected {
+  color: $card-color;
+}
+
+.done {
+  color: $done-color;
 }

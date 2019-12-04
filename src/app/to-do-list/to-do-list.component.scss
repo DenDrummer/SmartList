@@ -50,7 +50,9 @@
         text-align: center;
 
         label {
-
+          input[type='checkbox'] {
+            //TODO: personalize checkboxes
+          }
         }
       }
 
@@ -60,13 +62,36 @@
         display: flex;
         justify-content: center;
 
-        .imgDiv{
+        .imgDiv {
           background-color: $slogan-color;
           width: 100px;
           height: 100px;
           border-radius: 5px;
         }
       }
+    }
+
+    .evenDone,
+    .oddDone {
+      color: #161;
+
+      .imageParam {
+        .imgDiv {
+          background-color: #59B359;
+        }
+      }
+
+      * {
+        color: #161;
+      }
+    }
+
+    .evenDone {
+      background-color: #8f87;
+    }
+
+    .oddDone {
+      background-color: #6e67;
     }
   }
 
@@ -85,14 +110,14 @@
       }
     }
   }
+}
 
-  .oddCol,
-  .oddRow {
-    background-color: $odd-bg;
-  }
+.oddCol,
+.oddRow {
+  background-color: $odd-bg;
+}
 
-  .evenCol,
-  .evenRow {
-    background-color: $even-bg;
-  }
+.evenCol,
+.evenRow {
+  background-color: $even-bg;
 }
