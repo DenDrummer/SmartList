@@ -4,8 +4,11 @@
                  *ngFor="let list of lists; let index = index"
                  [class.selected]="index === selectedList"
                  [list]="list"
-                 [selected]="index === selectedList"></app-list-card>
-  <div id="newListCard">
+                 [selected]="index === selectedList"
+                 class="button"></app-list-card>
+  <div (click)="openNewListMenu()"
+       class="button"
+       id="newListCard">
     <h1>+</h1>
   </div>
   <div *ngIf="lists.length === 0"

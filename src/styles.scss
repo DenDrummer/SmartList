@@ -9,6 +9,7 @@
   margin: 0;
   padding: 0;
   color: $logo-color;
+  user-select: none;
 }
 
 body {
@@ -36,4 +37,8 @@ app-root {
 html,
 body {
   //height: 100%;
+}
+
+.button {
+  cursor: pointer;
 }

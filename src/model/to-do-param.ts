@@ -3,7 +3,7 @@ export abstract class ToDoParam {
   type: string;
   typeDesc: string;
   value?;
-  maxLength?;
+  maxLength?: number;
 
   constructor(name: string) {
     this.name = name;

@@ -1,5 +1,13 @@
 <h1 id="listTitle">{{list.title}}</h1>
-<div id="configButton">Configure list</div>
+
+<div (click)="openListConfig()"
+     class="listButton button"
+     id="configButton">Configure list
+</div>
+<div (click)="toggleCompactMode()"
+     class="listButton button"
+     id="compactToggle">Compact mode
+</div>
 
 <table (matSortChange)="sortData($event)"
        id="todoList"
@@ -14,20 +22,24 @@
         [class]="param.type+'Column'"
         [mat-sort-header]="param.name"
         [ngClass]="{oddCol: oddCol, evenCol: evenCol}">{{param.name}}</th>
+    <th [ngClass]="{oddCol: list.parameters % 2 == 1, evenCol: list.parameters % 2 == 0}"
+        id="trashCol">
+    </th>
   </tr>
   </thead>
   <tbody> <!--TODO: make scrollable-->
   <tr *ngFor="let item of sortedList; let oddRow = odd; let evenRow = even; let itemIndex = index;"
-      [ngClass]="{oddRow: oddRow, evenRow: evenRow, oddDone: oddRow && item.done.value, evenDone: evenRow && item.done.value}">
+      [ngClass]="{oddRow: oddRow, evenRow: evenRow, done: item.done.value}">
     <td class="oddCol checkboxParam">
       <label>
-        <input (change)="checkDone(itemIndex, $event)"
+        <input (change)="checkDone(item, $event)"
                [checked]="item.done.value"
                type="checkbox">
       </label>
     </td>
     <td *ngFor="let param of item.parameters; let oddCol = odd; let evenCol = even; let paramIndex = index;"
-        [ngClass]="{oddCol: oddCol, evenCol: evenCol, hmm: param.type}">
+        [class]="param.type+'Param'"
+        [ngClass]="{oddCol: oddCol, evenCol: evenCol}">
       <div *ngIf="param.type === 'Checkbox'"
            class="checkboxParam">
         <label>
@@ -36,8 +48,10 @@
         </label>
       </div>
       <div *ngIf="param.type === 'Image'"
+           [class.expanded]="!compactMode"
            class="imageParam">
-        <div class="imgDiv"></div>
+        <div [class.expanded]="!compactMode"
+             class="imgDiv"></div>
       </div>
       <div *ngIf="param.type === 'Text'"
            class="textParam">param.value
@@ -46,12 +60,19 @@
            class="titleParam">{{param.value}}
       </div>
     </td>
+    <td (click)="deleteItem(item)"
+        [class.expanded]="!compactMode"
+        [ngClass]="{oddCol: (list.parameters % 2 == 1), evenCol: (list.parameters % 2 == 0)}"
+        class="trashCell"> <!--TODO: fix color-->
+      <div [class.expanded]="!compactMode"
+           class="trashDiv"></div>
+    </td>
   </tr>
   </tbody>
   <tfoot>
   <tr>
     <th [attr.colspan]="list.parameters.length + 1">
-      <div>+ New item</div>
+      <div (click)="addItem()" class="button">+ New item</div>
     </th>
   </tr>
   </tfoot>

@@ -6,6 +6,8 @@ import {ImageParam} from "../model/ParamTypes/image-param";
 import {TextParam} from "../model/ParamTypes/text-param";
 import {CheckBoxParam} from "../model/ParamTypes/check-box-param";
 import {ScrollDispatcher} from "@angular/cdk/overlay";
+import {ToDoParam} from "../model/to-do-param";
+import {ToDoItem} from "../model/to-do-item";
 
 @Component({
   selector: 'app-root',
@@ -25,6 +27,7 @@ export class AppComponent implements OnInit {
   showSidebar = false;
   windowWidth: number;
   shownList: number = null;
+  compactMode = true;
   lists: ToDoList[] = [];
 
   private CHARLIST = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789 ";
@@ -38,6 +41,10 @@ export class AppComponent implements OnInit {
     this.showOverlay = !this.showOverlay;
   }
 
+  toggleCompactMode() {
+    this.compactMode = !this.compactMode;
+  }
+
   @HostListener('window:resize')
   onResize() {
     this.windowWidth = window.innerWidth;
@@ -45,18 +52,37 @@ export class AppComponent implements OnInit {
 
   selectList(list: number) {
     console.debug("list has been selected: " + list);
-    if (list === this.shownList){
+    if (list === this.shownList) {
       this.shownList = null;
-    }
-    else {
+    } else {
       this.shownList = list;
     }
   }
 
-  private createDefault() {
+  createList(name: string, params: ToDoParam[]) {
+    const newList = new ToDoList(this.lists.length, name);
+    this.lists.push(newList);
+    newList.parameters = params;
+  }
 
+  openNewMenuList() {
+    // TODO: openNewMenuList()
+    console.error("Not implemented yet");
+    this.showSidebar = !this.showSidebar;
+  }
+
+  createItem(list: ToDoList) {
+    list.createItem();
+  }
+
+  deleteItem(itemToDelete: ToDoItem) {
+    // TODO: openNewMenuList()
+    console.error("Not implemented yet");
+  }
+
+  private createDefault() {
     for (let listI = 0; listI < 3; listI++) {
-      const newList = new ToDoList("List " + listI);
+      const newList = new ToDoList(this.lists.length, "List " + listI);
       this.lists.push(newList);
 
       //region --- params ---
@@ -106,7 +132,7 @@ export class AppComponent implements OnInit {
             case "Text":
             case "Title":
               param.value = "";
-              const textLength = Math.ceil(Math.random() * (param.maxLength-1)+1);
+              const textLength = Math.ceil(Math.random() * (param.maxLength - 1) + 1);
               console.debug("filling " + textLength + " of max " + param.maxLength + " characters");
               for (let charI = 0; charI < textLength; charI++) {
                 param.value += this.CHARLIST[Math.round(Math.random() * this.CHARLIST.length)]

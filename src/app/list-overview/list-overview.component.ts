@@ -11,6 +11,8 @@ export class ListOverviewComponent implements OnInit {
   lists: ToDoList[];
   @Output()
   listSelected = new EventEmitter<number>();
+  @Output()
+  newListMenuOpened = new EventEmitter();
   @Input()
   selectedList = 0;
 
@@ -25,5 +27,9 @@ export class ListOverviewComponent implements OnInit {
     console.debug("opening list " + list);
     console.debug("selected list " + this.selectedList);
     this.listSelected.emit(list);
+  }
+
+  openNewListMenu() {
+    this.newListMenuOpened.emit();
   }
 }

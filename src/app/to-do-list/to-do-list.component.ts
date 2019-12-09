@@ -1,4 +1,4 @@
-import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
+import {Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges} from '@angular/core';
 import {ToDoList} from "../../model/to-do-list";
 import {Sort} from "@angular/material/sort";
 import {ToDoItem} from "../../model/to-do-item";
@@ -12,6 +12,16 @@ import {ScrollDispatcher} from "@angular/cdk/scrolling";
 export class ToDoListComponent implements OnInit, OnChanges {
   @Input()
   list: ToDoList;
+  @Input()
+  compactMode: boolean;
+  @Output()
+  compactModeToggled = new EventEmitter();
+  @Output()
+  listConfigOpened = new EventEmitter<ToDoList>();
+  @Output()
+  itemCreated = new EventEmitter<ToDoList>();
+  @Output()
+  itemDeleted = new EventEmitter<ToDoItem>();
   displayedColumns: string[] = ['Done'];
   sortedList: ToDoItem[];
 
@@ -57,9 +67,9 @@ export class ToDoListComponent implements OnInit, OnChanges {
     return (a === b) ? 0 : ((a ? -1 : 1) * (isAsc ? 1 : -1));
   }
 
-  checkDone(index: number, event) {
-    console.debug("itemIndex: " + index);
-    this.list.items[index].done.value = event.target.checked;
+  checkDone(item: ToDoItem, event) {
+    console.debug("itemIndex: " + item);
+    item.done.value = event.target.checked;
   }
 
   compareItem(a: ToDoItem, b: ToDoItem, isAsc: boolean, sorter: string) {
@@ -76,5 +86,22 @@ export class ToDoListComponent implements OnInit, OnChanges {
 
   checkCheckbox(itemIndex: number, paramIndex: number, event) {
     this.list.items[itemIndex].parameters[paramIndex].value = event.target.checked;
+  }
+
+  openListConfig() {
+    this.listConfigOpened.emit(this.list);
+  }
+
+  toggleCompactMode() {
+    this.compactModeToggled.emit();
+  }
+
+  addItem() {
+    this.itemCreated.emit(this.list);
+  }
+
+  deleteItem(item: ToDoItem) {
+    //TODO: deleteItem()
+    console.error("Not implemented yet");
   }
 }

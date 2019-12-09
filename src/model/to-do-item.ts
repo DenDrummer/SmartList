@@ -2,11 +2,15 @@ import {ToDoParam} from "./to-do-param";
 import {CheckBoxParam} from "./ParamTypes/check-box-param";
 
 export class ToDoItem {
+  listId: number;
+  itemId: number;
   done: CheckBoxParam;
   parameters: ToDoParam[];
 
 
-  constructor(done: boolean, parameters: ToDoParam[]) {
+  constructor(listId: number, itemId: number, done: boolean, parameters: ToDoParam[]) {
+    this.listId = itemId;
+    this.itemId = itemId;
     this.done = new CheckBoxParam("Done");
     this.done.value = done;
     this.parameters = parameters;

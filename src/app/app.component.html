@@ -18,10 +18,14 @@
     <app-sidebar *ngIf="showSidebar"
                  id="sidebar"></app-sidebar>
     <app-list-overview (listSelected)="selectList($event)"
-                       [lists]="lists"
-                       [selectedList]="shownList"
+                       (newListMenuOpened)="openNewMenuList()"
+                       [lists]="lists" [selectedList]="shownList"
                        id="listOverview"></app-list-overview>
-    <app-to-do-list *ngIf="lists[shownList] !== undefined && lists[shownList] !== null; else listHidden"
+    <app-to-do-list (compactModeToggled)="toggleCompactMode()"
+                    (itemCreated)="createItem($event)"
+                    (itemDeleted)="deleteItem($event)"
+                    *ngIf="lists[shownList] !== undefined && lists[shownList] !== null; else listHidden"
+                    [compactMode]="compactMode"
                     [list]="lists[shownList]"
                     id="content"></app-to-do-list>
     <ng-template #listHidden>
