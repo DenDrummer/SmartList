@@ -51,7 +51,7 @@ export class ToDoList {
   }
 
   public deleteItem(item: ToDoItem) {
-    //TODO: openListConfig()
+    //TODO: deleteItem()
     console.error("Not implemented yet");
     if (this.listId == item.listId) {
       const itemToRemove = this.items.find((i) => {
@@ -63,7 +63,7 @@ export class ToDoList {
     } else {
       console.error("tried to remove an item from the wrong list")
     }
-    //this.updateIds();
+    this.updateIds();
   }
 
   public percentageDone() {
@@ -90,5 +90,6 @@ export class ToDoList {
       }
       console.info("param added to items");
     }
+    this.updateIds();
   }
 }

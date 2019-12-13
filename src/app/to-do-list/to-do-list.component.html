@@ -53,18 +53,30 @@
         <div [class.expanded]="!compactMode"
              class="imgDiv"></div>
       </div>
-      <div *ngIf="param.type === 'Text'"
-           class="textParam">param.value
-      </div>
-      <div *ngIf="param.type === 'Title'"
+      <label *ngIf="param.type==='Text'"
+             [class.expanded]="!compactMode"
+             class="textParam">
+        <textarea [(ngModel)]="param.value"
+                  [class.expanded]="!compactMode"
+                  [maxlength]="param.maxLength.toString()"
+                  rows="5"
+                  wrap="soft"></textarea>
+      </label>
+      <label *ngIf="param.type==='Title'"
+             class="titleParam">
+        <input [(ngModel)]="param.value"
+               [maxlength]="param.maxLength.toString()"
+               type="text">
+      </label>
+      <!--<div *ngIf="param.type === 'Title'"
            class="titleParam">{{param.value}}
-      </div>
+      </div>-->
     </td>
-    <td (click)="deleteItem(item)"
-        [class.expanded]="!compactMode"
+    <td [class.expanded]="!compactMode"
         [ngClass]="{oddCol: (list.parameters % 2 == 1), evenCol: (list.parameters % 2 == 0)}"
         class="trashCell"> <!--TODO: fix color-->
-      <div [class.expanded]="!compactMode"
+      <div (click)="deleteItem(item)"
+           [class.expanded]="!compactMode"
            class="trashDiv"></div>
     </td>
   </tr>

@@ -11,6 +11,7 @@ import {MatTableModule} from "@angular/material/table";
 import {MatSortModule} from "@angular/material/sort";
 import {ListOverviewComponent} from './list-overview/list-overview.component';
 import {ListCardComponent} from './list-overview/list-card/list-card.component';
+import {FormsModule} from "@angular/forms";
 //import {ScrollingModule} from "@angular/cdk/typings/esm5/scrolling";
 
 @NgModule({
@@ -27,6 +28,7 @@ import {ListCardComponent} from './list-overview/list-card/list-card.component';
     BrowserAnimationsModule,
     MatTableModule,
     MatSortModule,
+    FormsModule,
     //ScrollingModule
   ],
   providers: [],

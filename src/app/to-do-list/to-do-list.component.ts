@@ -26,7 +26,7 @@ export class ToDoListComponent implements OnInit, OnChanges {
   sortedList: ToDoItem[];
 
   ngOnInit() {
-    this.sortedList = this.list.items.slice();
+    this.loadList();
 
     console.debug("sorted list");
     console.debug(this.sortedList);
@@ -34,7 +34,12 @@ export class ToDoListComponent implements OnInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void {
     console.info("changes detected... sorting");
+    this.loadList();
+  }
+
+  private loadList(){
     this.sortedList = this.list.items.slice();
+
   }
 
   sortData(sort: Sort) {
@@ -73,13 +78,34 @@ export class ToDoListComponent implements OnInit, OnChanges {
   }
 
   compareItem(a: ToDoItem, b: ToDoItem, isAsc: boolean, sorter: string) {
-    if (a.findParam(sorter).value < b.findParam(sorter).value) {
-      return -1 * (isAsc ? 1 : -1);
-    } else {
-      if (a.findParam(sorter).value > b.findParam(sorter).value) {
-        return 1 * (isAsc ? 1 : -1);
+    const paramA = a.findParam(sorter);
+    const paramB = b.findParam(sorter);
+
+    if (paramA.type == "Title" || paramA.type == "Text") {
+      const valA: string = paramA.value.toLowerCase();
+      const valB: string = paramB.value.toLowerCase();
+
+      if (valA < valB) {
+        return -1 * (isAsc ? 1 : -1);
       } else {
-        return 0;
+        if (valA > valB) {
+          return 1 * (isAsc ? 1 : -1);
+        } else {
+          return 0;
+        }
+      }
+    } else {
+      const valA = paramA.value;
+      const valB = paramB.value;
+
+      if (valA < valB) {
+        return -1 * (isAsc ? 1 : -1);
+      } else {
+        if (valA > valB) {
+          return 1 * (isAsc ? 1 : -1);
+        } else {
+          return 0;
+        }
       }
     }
   }
@@ -98,6 +124,9 @@ export class ToDoListComponent implements OnInit, OnChanges {
 
   addItem() {
     this.itemCreated.emit(this.list);
+    console.log("new item created");
+    this.loadList();
+
   }
 
   deleteItem(item: ToDoItem) {

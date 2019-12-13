@@ -111,7 +111,7 @@ export class AppComponent implements OnInit {
       }
       //endregion
 
-      //region --- items ---
+      /*//region --- items ---
       const minItems = 3;
       const maxItems = 5 - minItems;
 
@@ -141,7 +141,7 @@ export class AppComponent implements OnInit {
           }
         }
       }
-      //endregion
+      //endregion*/
     }
   }
 }
