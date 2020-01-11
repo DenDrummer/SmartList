@@ -5,6 +5,7 @@
      id="configButton">Configure list
 </div>
 <div (click)="toggleCompactMode()"
+     [class.compact]="compactMode"
      class="listButton button"
      id="compactToggle">Compact mode
 </div>
@@ -31,53 +32,23 @@
   <tr *ngFor="let item of sortedList; let oddRow = odd; let evenRow = even; let itemIndex = index;"
       [ngClass]="{oddRow: oddRow, evenRow: evenRow, done: item.done.value}">
     <td class="oddCol checkboxParam">
-      <label>
-        <input (change)="checkDone(item, $event)"
-               [checked]="item.done.value"
-               type="checkbox">
-      </label>
+      <div class="checkboxContainer">
+        <app-checkbox (checkboxToggled)="toggleDone(item)"
+                      [compactMode]="compactMode"
+                      [param]="item.done.value"></app-checkbox>
+      </div>
     </td>
     <td *ngFor="let param of item.parameters; let oddCol = odd; let evenCol = even; let paramIndex = index;"
         [class]="param.type+'Param'"
         [ngClass]="{oddCol: oddCol, evenCol: evenCol}">
-      <div *ngIf="param.type === 'Checkbox'"
-           class="checkboxParam">
-        <label>
-          <input (change)="checkCheckbox(itemIndex, paramIndex, $event)"
-                 [checked]="param.value" type="checkbox">
-        </label>
-      </div>
-      <div *ngIf="param.type === 'Image'"
-           [class.expanded]="!compactMode"
-           class="imageParam">
-        <div [class.expanded]="!compactMode"
-             class="imgDiv"></div>
-      </div>
-      <label *ngIf="param.type==='Text'"
-             [class.expanded]="!compactMode"
-             class="textParam">
-        <textarea [(ngModel)]="param.value"
-                  [class.expanded]="!compactMode"
-                  [maxlength]="param.maxLength.toString()"
-                  rows="5"
-                  wrap="soft"></textarea>
-      </label>
-      <label *ngIf="param.type==='Title'"
-             class="titleParam">
-        <input [(ngModel)]="param.value"
-               [maxlength]="param.maxLength.toString()"
-               type="text">
-      </label>
-      <!--<div *ngIf="param.type === 'Title'"
-           class="titleParam">{{param.value}}
-      </div>-->
+      <app-param-cell (checkboxToggled)="toggleCheckbox($event)"
+                      [compactMode]="compactMode"
+                      [param]="param"></app-param-cell>
     </td>
     <td [class.expanded]="!compactMode"
         [ngClass]="{oddCol: (list.parameters % 2 == 1), evenCol: (list.parameters % 2 == 0)}"
         class="trashCell"> <!--TODO: fix color-->
-      <div (click)="deleteItem(item)"
-           [class.expanded]="!compactMode"
-           class="trashDiv"></div>
+      <mat-icon>delete</mat-icon>
     </td>
   </tr>
   </tbody>

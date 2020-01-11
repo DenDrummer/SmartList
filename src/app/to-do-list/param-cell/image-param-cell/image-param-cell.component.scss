@@ -1,0 +1,23 @@
+@import "src/variables";
+
+.imageParam {
+  display: flex;
+  justify-content: center;
+  padding: 0;
+  height: $height-compact;
+
+  .imgDiv {
+    background-color: $slogan-color;
+    border-radius: 5px;
+    height: 80%;
+  }
+}
+
+.imageParam.expanded {
+  height: $height-expanded;
+
+  .imgDiv {
+    width: 100px;
+    height: 100px;
+  }
+}

@@ -30,9 +30,14 @@ h1 {
   }
 
   #newListCard {
-    h1 {
-      //font-size: 4.5em;
+    align-items: center;
+
+    mat-icon {
+      $icon-size: 50px;
       color: $slogan-color;
+      font-size: $icon-size;
+      height: $icon-size;
+      width: $icon-size;
     }
   }
 

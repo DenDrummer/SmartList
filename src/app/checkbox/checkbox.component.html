@@ -1,0 +1,13 @@
+<div (click)="toggleCheckbox()"
+     class="checkbox">
+  <mat-icon *ngIf="param">check</mat-icon>
+  <mat-icon *ngIf="!param">close</mat-icon>
+</div>
+<!--<div *ngIf="param.type === 'Checkbox'"
+     class="checkboxParam">
+  <label>
+    <input (change)="toggleCheckbox($event)"
+           [checked]="param"
+           type="checkbox">
+  </label>
+</div>-->

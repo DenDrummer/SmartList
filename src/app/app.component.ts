@@ -5,7 +5,6 @@ import {TitleParam} from "../model/ParamTypes/title-param";
 import {ImageParam} from "../model/ParamTypes/image-param";
 import {TextParam} from "../model/ParamTypes/text-param";
 import {CheckBoxParam} from "../model/ParamTypes/check-box-param";
-import {ScrollDispatcher} from "@angular/cdk/overlay";
 import {ToDoParam} from "../model/to-do-param";
 import {ToDoItem} from "../model/to-do-item";
 
@@ -24,7 +23,8 @@ import {ToDoItem} from "../model/to-do-item";
 export class AppComponent implements OnInit {
   name = 'Listom';
   showOverlay = false;
-  showSidebar = false;
+  showListMenu = false;
+  menuList: ToDoList = null;
   windowWidth: number;
   shownList: number = null;
   compactMode = true;
@@ -68,7 +68,8 @@ export class AppComponent implements OnInit {
   openNewMenuList() {
     // TODO: openNewMenuList()
     console.error("Not implemented yet");
-    this.showSidebar = !this.showSidebar;
+    this.showListMenu = !this.showListMenu;
+    this.toggleOverlay()
   }
 
   createItem(list: ToDoList) {
@@ -78,6 +79,12 @@ export class AppComponent implements OnInit {
   deleteItem(itemToDelete: ToDoItem) {
     // TODO: openNewMenuList()
     console.error("Not implemented yet");
+  }
+
+  updateParamValue(event) {
+    console.debug("param updated");
+    // update the parameter
+    event.param.value = event.value;
   }
 
   private createDefault() {

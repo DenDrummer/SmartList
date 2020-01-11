@@ -1,0 +1,15 @@
+<app-checkbox (checkboxToggled)="toggleCheckbox()"
+              *ngIf="param.type === 'Checkbox'"
+              [compactMode]="compactMode"
+              [param]="param.value"></app-checkbox>
+<app-image-param-cell *ngIf="param.type === 'Image'"
+                      [compactMode]="compactMode"
+                      [param]="param"></app-image-param-cell>
+<app-text-param-cell *ngIf="param.type === 'Text'"
+                     [compactMode]="compactMode"
+                     [param]="param"></app-text-param-cell>
+<app-title-param-cell *ngIf="param.type === 'Title'"
+                      [compactMode]="compactMode"
+                      [param]="param"></app-title-param-cell>
+
+

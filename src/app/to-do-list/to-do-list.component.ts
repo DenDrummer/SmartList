@@ -3,6 +3,8 @@ import {ToDoList} from "../../model/to-do-list";
 import {Sort} from "@angular/material/sort";
 import {ToDoItem} from "../../model/to-do-item";
 import {ScrollDispatcher} from "@angular/cdk/scrolling";
+import {CheckBoxParam} from "../../model/ParamTypes/check-box-param";
+import {ToDoParam} from "../../model/to-do-param";
 
 @Component({
   selector: 'app-to-do-list',
@@ -14,6 +16,7 @@ export class ToDoListComponent implements OnInit, OnChanges {
   list: ToDoList;
   @Input()
   compactMode: boolean;
+
   @Output()
   compactModeToggled = new EventEmitter();
   @Output()
@@ -22,6 +25,9 @@ export class ToDoListComponent implements OnInit, OnChanges {
   itemCreated = new EventEmitter<ToDoList>();
   @Output()
   itemDeleted = new EventEmitter<ToDoItem>();
+  @Output()
+  paramValueUpdated = new EventEmitter();
+
   displayedColumns: string[] = ['Done'];
   sortedList: ToDoItem[];
 
@@ -72,9 +78,8 @@ export class ToDoListComponent implements OnInit, OnChanges {
     return (a === b) ? 0 : ((a ? -1 : 1) * (isAsc ? 1 : -1));
   }
 
-  checkDone(item: ToDoItem, event) {
-    console.debug("itemIndex: " + item);
-    item.done.value = event.target.checked;
+  toggleDone(item: ToDoItem) {
+    this.toggleCheckbox(item.done)
   }
 
   compareItem(a: ToDoItem, b: ToDoItem, isAsc: boolean, sorter: string) {
@@ -110,8 +115,15 @@ export class ToDoListComponent implements OnInit, OnChanges {
     }
   }
 
-  checkCheckbox(itemIndex: number, paramIndex: number, event) {
-    this.list.items[itemIndex].parameters[paramIndex].value = event.target.checked;
+  toggleCheckbox(event: ToDoParam) {
+    console.debug("updating param");
+    console.debug(event);
+    const item = {
+      "param" : event,
+      "value" : !event.value
+    };
+    this.paramValueUpdated.emit(item);
+    //this.list.items[itemIndex].parameters[paramIndex].value = event.target.checked;
   }
 
   openListConfig() {

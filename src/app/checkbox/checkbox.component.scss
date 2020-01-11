@@ -1,0 +1,10 @@
+@import "../../variables";
+
+.checkbox {
+  border: 2px solid $button-bg;
+  box-sizing: border-box;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  width: 28px;
+}

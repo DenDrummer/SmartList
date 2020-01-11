@@ -1,0 +1,9 @@
+<label [class.expanded]="!compactMode"
+       class="textParam">
+        <textarea [(ngModel)]="param.value"
+                  [class.expanded]="!compactMode"
+                  [maxlength]="param.maxLength.toString()"
+                  [placeholder]="param.name"
+                  rows="5"
+                  wrap="soft"></textarea>
+</label>

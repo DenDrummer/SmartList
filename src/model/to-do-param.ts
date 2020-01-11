@@ -2,7 +2,7 @@ export abstract class ToDoParam {
   name: string;
   type: string;
   typeDesc: string;
-  value?;
+  value;
   maxLength?: number;
 
   constructor(name: string) {

@@ -18,6 +18,7 @@
 
 #compactToggle.compact {
   background-color: $button-bg;
+  color: $logo-color;
 }
 
 .listButton {
@@ -68,13 +69,20 @@
 
     tr {
 
+      app-param-cell {
+        height: $height-compact;
+      }
+
+      app-param-cell.expanded {
+        height: $height-expanded;
+      }
+
       .checkboxParam {
         text-align: center;
 
-        label {
-          input[type='checkbox'] {
-            //TODO: personalize checkboxes
-          }
+        .checkboxContainer {
+          display: flex;
+          justify-content: center;
         }
       }
 
@@ -84,14 +92,6 @@
         align-items: center;
         height: 100%;
         cursor: pointer;
-
-        .trashDiv {
-          height: 15px;
-          width: 15px;
-          background-image: url("https://icon-library.net//images/trash-can-icon-transparent/trash-can-icon-transparent-25.jpg");
-          background-repeat: no-repeat;
-          background-size: contain;
-        }
       }
 
       .trashCell.expanded {
@@ -120,12 +120,12 @@
         }
       }
 
-      .textParam {
-        textarea {
-          width: calc(100% - 4px);
-          overflow: scroll;
-          height: 100%;
-        }
+      .TextParam {
+        height: 100%;
+      }
+
+      .TextParam.expanded {
+        height: 108px;
       }
     }
 
@@ -140,7 +140,7 @@
       }
 
       * {
-        color: #161;
+        color: #116611;
       }
     }
 

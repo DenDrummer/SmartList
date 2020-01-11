@@ -1,0 +1,7 @@
+<label *ngIf="param.type==='Title'"
+       class="titleParam">
+  <input [(ngModel)]="param.value"
+         [maxlength]="param.maxLength.toString()"
+         [placeholder]="param.name"
+         type="text">
+</label>

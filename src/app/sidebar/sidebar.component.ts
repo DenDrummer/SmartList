@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnInit, Output} from '@angular/core';
 
 @Component({
   selector: 'app-sidebar',
@@ -8,6 +8,9 @@ import {Component, Input, OnInit} from '@angular/core';
 export class SidebarComponent implements OnInit {
   @Input()
   lists: Map<number, string>;
+
+  //@Output()
+
 
   constructor() {
   }

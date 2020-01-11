@@ -1,14 +1,15 @@
 @import "variables";
 
 @font-face {
-  font-family: Architext;
+  font-family: $font-title;
   src: url("assets/fonts/architext/Architex.ttf");
 }
 
 * {
+  color: $logo-color;
+  font-family: $font-main;
   margin: 0;
   padding: 0;
-  color: $logo-color;
   user-select: none;
 }
 
