@@ -2,8 +2,6 @@ import {Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges
 import {ToDoList} from "../../model/to-do-list";
 import {Sort} from "@angular/material/sort";
 import {ToDoItem} from "../../model/to-do-item";
-import {ScrollDispatcher} from "@angular/cdk/scrolling";
-import {CheckBoxParam} from "../../model/ParamTypes/check-box-param";
 import {ToDoParam} from "../../model/to-do-param";
 
 @Component({
@@ -33,28 +31,16 @@ export class ToDoListComponent implements OnInit, OnChanges {
 
   ngOnInit() {
     this.loadList();
-
-    console.debug("sorted list");
-    console.debug(this.sortedList);
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    console.info("changes detected... sorting");
     this.loadList();
   }
 
-  private loadList(){
-    this.sortedList = this.list.items.slice();
-
-  }
-
   sortData(sort: Sort) {
-    console.info("sorting by " + sort.active + " " + sort.direction);
     const data = this.list.items.slice();
     if (!sort.active || sort.direction === '') {
       this.sortedList = data;
-      console.info("list sorted");
-      console.debug(this.sortedList);
       return;
     }
 
@@ -116,11 +102,9 @@ export class ToDoListComponent implements OnInit, OnChanges {
   }
 
   toggleCheckbox(event: ToDoParam) {
-    console.debug("updating param");
-    console.debug(event);
     const item = {
-      "param" : event,
-      "value" : !event.value
+      "param": event,
+      "value": !event.value
     };
     this.paramValueUpdated.emit(item);
     //this.list.items[itemIndex].parameters[paramIndex].value = event.target.checked;
@@ -136,13 +120,20 @@ export class ToDoListComponent implements OnInit, OnChanges {
 
   addItem() {
     this.itemCreated.emit(this.list);
-    console.log("new item created");
     this.loadList();
-
   }
 
   deleteItem(item: ToDoItem) {
-    //TODO: deleteItem()
-    console.error("Not implemented yet");
+    //this.itemDeleted.emit(item);
+    this.list.items.splice(
+      this.list.items.findIndex(i => {
+        return i === item;
+      }), 1);
+    this.loadList();
+  }
+
+  private loadList() {
+    this.sortedList = this.list.items.slice();
+
   }
 }

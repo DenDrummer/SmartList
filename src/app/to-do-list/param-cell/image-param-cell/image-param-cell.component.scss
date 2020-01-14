@@ -9,7 +9,8 @@
   .imgDiv {
     background-color: $slogan-color;
     border-radius: 5px;
-    height: 80%;
+    height: $height-compact * 0.8;
+    width: $height-compact * 0.8;
   }
 }
 

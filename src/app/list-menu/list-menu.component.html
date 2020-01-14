@@ -1,3 +1,53 @@
-<p>
-  list-menu works!
-</p>
+<div (click)="cancel()"
+     id="cancelButton">
+  <mat-icon>close</mat-icon>
+</div>
+<div id="listForm">
+  <label>
+    <input [(ngModel)]="list.title"
+           type="text"
+           placeholder="List title"/>
+  </label>
+  <div>
+    <b>Parameters:</b>
+    <table>
+      <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th></th>
+        <th></th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let param of list.parameters; let first = first; let last = last;">
+        <td>
+          <label>
+            <input [(ngModel)]="param.name"
+                   placeholder="Parameter name"
+                   type="text"/>
+          </label>
+        </td>
+        <td>
+          <div>{{param.type}}</div>
+        </td>
+        <td>
+          <mat-icon *ngIf="!first"
+                    (click)="moveUp(param)">up</mat-icon>
+          <mat-icon *ngIf="!last"
+                    (click)="moveDown(param)">down</mat-icon>
+        </td>
+        <td>
+          <mat-icon (click)="removeParam(param)">delete</mat-icon>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <div (click)="createList()"
+       *ngIf="newList"
+       id="createListButton">
+    <mat-icon>add</mat-icon>
+    Create new list
+  </div>
+</div>

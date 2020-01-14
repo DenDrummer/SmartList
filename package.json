@@ -5,6 +5,7 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
+    "surge": "ng build --prod && cd dist\\Smartlist && echo https://jl-ux-smartlist.surge.sh > CNAME && echo '*' > CORS && surge && cd ..\\..",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"

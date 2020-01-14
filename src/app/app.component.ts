@@ -29,6 +29,7 @@ export class AppComponent implements OnInit {
   shownList: number = null;
   compactMode = true;
   lists: ToDoList[] = [];
+  newList: boolean;
 
   private CHARLIST = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789 ";
 
@@ -51,7 +52,6 @@ export class AppComponent implements OnInit {
   }
 
   selectList(list: number) {
-    console.debug("list has been selected: " + list);
     if (list === this.shownList) {
       this.shownList = null;
     } else {
@@ -59,17 +59,18 @@ export class AppComponent implements OnInit {
     }
   }
 
-  createList(name: string, params: ToDoParam[]) {
+  createList(name: string, params: ToDoParam[]): ToDoList {
     const newList = new ToDoList(this.lists.length, name);
     this.lists.push(newList);
     newList.parameters = params;
+    return newList;
   }
 
   openNewMenuList() {
-    // TODO: openNewMenuList()
-    console.error("Not implemented yet");
-    this.showListMenu = !this.showListMenu;
-    this.toggleOverlay()
+    this.newList = true;
+    this.menuList = new ToDoList(this.lists.length, '');
+    this.showListMenu = true;
+    this.showOverlay = true;
   }
 
   createItem(list: ToDoList) {
@@ -77,14 +78,33 @@ export class AppComponent implements OnInit {
   }
 
   deleteItem(itemToDelete: ToDoItem) {
-    // TODO: openNewMenuList()
-    console.error("Not implemented yet");
+    /*const itemlist = this.lists[this.shownList].items;
+    itemlist.splice(itemlist.findIndex(a => {
+      return a.itemId === itemToDelete.itemId;
+    }),1);*/
+    // TODO: deleteItem()
+    //console.error("Not implemented yet");
   }
 
   updateParamValue(event) {
-    console.debug("param updated");
     // update the parameter
     event.param.value = event.value;
+  }
+
+  cancelListEdit(menuList: ToDoList) {
+    menuList = null;
+    this.newList = false;
+    this.showListMenu = false;
+    this.showOverlay = false;
+  }
+
+  editList(menuList: ToDoList) {
+
+  }
+
+  addList(newList: ToDoList) {
+    this.lists.push(newList);
+    this.shownList = newList.listId;
   }
 
   private createDefault() {
@@ -150,5 +170,12 @@ export class AppComponent implements OnInit {
       }
       //endregion*/
     }
+  }
+
+  configureList(event: ToDoList) {
+    this.newList = false;
+    this.menuList = event;
+    this.showListMenu = true;
+    this.showOverlay = true;
   }
 }

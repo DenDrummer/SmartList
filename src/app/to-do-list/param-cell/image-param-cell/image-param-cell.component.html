@@ -1,6 +1,13 @@
 <div *ngIf="param.type === 'Image'"
      [class.expanded]="!compactMode"
      class="imageParam">
-  <div [class.expanded]="!compactMode"
-       class="imgDiv"></div>
+  <img (click)="fileInput.click()"
+       [class.expanded]="!compactMode"
+       [src]="param.value"
+       class="imgDiv"/>
+  <input #fileInput
+         (change)="fileSelected($event)"
+         style="display: none"
+         accept="image/png"
+         type="file">
 </div>

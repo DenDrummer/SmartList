@@ -43,3 +43,39 @@ body {
 .button {
   cursor: pointer;
 }
+
+input[type = text]{
+  background-color: $odd-bg;
+  border: $button-bg solid 2px;
+  font-family: $font-main;
+  user-select: text;
+}
+
+table {
+  border-collapse: collapse;
+
+  thead {
+    background-color: $slogan-color;
+  }
+
+  thead,
+  tbody {
+    border: 2px solid $logo-color;
+  }
+
+  tbody {
+    tr {
+
+    }
+  }
+
+  .oddCol,
+  .oddRow {
+    background-color: $odd-bg;
+  }
+
+  .evenCol,
+  .evenRow {
+    background-color: $even-bg;
+  }
+}

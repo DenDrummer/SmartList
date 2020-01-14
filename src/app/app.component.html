@@ -2,10 +2,13 @@
         hidden
         id="overlayToggle">O
 </button>
-<app-list-menu *ngIf="showListMenu"
+<app-list-menu (listCreated)="addList(menuList)"
+               (listEditCanceled)="cancelListEdit(menuList)"
+               (listEditConfirmed)="editList(menuList)"
+               *ngIf="showListMenu"
+               [list]="menuList"
                id="listMenu"></app-list-menu>
-<div [@toggleOverlay]="showOverlay"
-     [class.blur]="showOverlay"
+<div [class.blur]="showOverlay"
      [class.overlay]="showOverlay"
      id="overlay">
   <div id="header">
@@ -23,8 +26,9 @@
                        id="listOverview"></app-list-overview>
     <app-to-do-list (compactModeToggled)="toggleCompactMode()"
                     (itemCreated)="createItem($event)"
-                    (paramValueUpdated)="updateParamValue($event)"
+                    (listConfigOpened)="configureList($event)"
                     (itemDeleted)="deleteItem($event)"
+                    (paramValueUpdated)="updateParamValue($event)"
                     *ngIf="lists[shownList] !== undefined && lists[shownList] !== null; else listHidden"
                     [compactMode]="compactMode"
                     [list]="lists[shownList]"

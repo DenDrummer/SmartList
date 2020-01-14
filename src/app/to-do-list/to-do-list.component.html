@@ -9,6 +9,9 @@
      class="listButton button"
      id="compactToggle">Compact mode
 </div>
+<div (click)="addItem()"
+     class="button listButton button">+ New item
+</div>
 
 <table (matSortChange)="sortData($event)"
        id="todoList"
@@ -23,7 +26,7 @@
         [class]="param.type+'Column'"
         [mat-sort-header]="param.name"
         [ngClass]="{oddCol: oddCol, evenCol: evenCol}">{{param.name}}</th>
-    <th [ngClass]="{oddCol: list.parameters % 2 == 1, evenCol: list.parameters % 2 == 0}"
+    <th [ngClass]="{oddCol: list.parameters.length % 2 == 1, evenCol: list.parameters.length % 2 == 0}"
         id="trashCol">
     </th>
   </tr>
@@ -45,7 +48,8 @@
                       [compactMode]="compactMode"
                       [param]="param"></app-param-cell>
     </td>
-    <td [class.expanded]="!compactMode"
+    <td (click)="deleteItem(item)"
+        [class.expanded]="!compactMode"
         [ngClass]="{oddCol: (list.parameters % 2 == 1), evenCol: (list.parameters % 2 == 0)}"
         class="trashCell"> <!--TODO: fix color-->
       <mat-icon>delete</mat-icon>
@@ -55,7 +59,9 @@
   <tfoot>
   <tr>
     <th [attr.colspan]="list.parameters.length + 1">
-      <div (click)="addItem()" class="button">+ New item</div>
+      <div (click)="addItem()"
+           class="button">+ New item
+      </div>
     </th>
   </tr>
   </tfoot>
