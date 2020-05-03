@@ -19,6 +19,6 @@ export class SidebarComponent implements OnInit {
   }
 
   openList(id: number) {
-
+    alert('this has not been implemented yet');
   }
 }

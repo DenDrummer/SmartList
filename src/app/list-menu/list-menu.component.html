@@ -5,43 +5,59 @@
 <div id="listForm">
   <label>
     <input [(ngModel)]="list.title"
-           type="text"
-           placeholder="List title"/>
+           placeholder="List title"
+           type="text"/>
   </label>
   <div>
     <b>Parameters:</b>
     <table>
       <thead>
       <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th></th>
-        <th></th>
+        <th class="evenCol">Name</th>
+        <th class="oddCol">Type</th>
+        <th class="evenCol"></th>
+        <th class="oddCol"></th>
       </tr>
       </thead>
       <tbody>
-      <tr *ngFor="let param of list.parameters; let first = first; let last = last;">
-        <td>
+      <tr *ngFor="let param of list.parameters; let first = first; let last = last; let odd = odd; let even = even;"
+          [class.evenRow]="even"
+          [class.oddRow]="odd">
+        <td class="evenCol">
           <label>
-            <input [(ngModel)]="param.name"
+            <input (ngModelChange)="updateParamName(param)"
+                   [(ngModel)]="param.name"
                    placeholder="Parameter name"
                    type="text"/>
           </label>
         </td>
-        <td>
+        <td class="oddCol">
           <div>{{param.type}}</div>
         </td>
-        <td>
-          <mat-icon *ngIf="!first"
-                    (click)="moveUp(param)">up</mat-icon>
-          <mat-icon *ngIf="!last"
-                    (click)="moveDown(param)">down</mat-icon>
+        <td class="evenCol">
+          <mat-icon (click)="moveUp(param)"
+                    *ngIf="!first"
+                    class="sortUpButton">keyboard_arrow_up
+          </mat-icon>
+          <mat-icon (click)="moveDown(param)"
+                    *ngIf="!last"
+                    class="sortDownButton">keyboard_arrow_down
+          </mat-icon>
         </td>
-        <td>
+        <td class="oddCol">
           <mat-icon (click)="removeParam(param)">delete</mat-icon>
         </td>
       </tr>
       </tbody>
+      <tfoot>
+      <tr>
+        <td colspan="4">
+          <div (click)="openParameterMenu()"
+               id="newParamButton">New parameter
+          </div>
+        </td>
+      </tr>
+      </tfoot>
     </table>
   </div>
   <div (click)="createList()"

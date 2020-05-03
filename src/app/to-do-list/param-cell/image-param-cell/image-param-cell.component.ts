@@ -42,7 +42,7 @@ export class ImageParamCellComponent implements OnInit {
         console.debug('events:');
         console.debug(events);
       }
-    })
+    });
 
 
     // const file: File = event.target.files[0];
@@ -54,5 +54,6 @@ export class ImageParamCellComponent implements OnInit {
     //   console.debug(event);
     // };
     // this.param.value = event.target.files[0];
+    alert('Actually uploading the image has not been implemented yet');
   }
 }

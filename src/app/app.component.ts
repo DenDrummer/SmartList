@@ -107,7 +107,26 @@ export class AppComponent implements OnInit {
     this.shownList = newList.listId;
   }
 
+  configureList(event: ToDoList) {
+    this.newList = false;
+    this.menuList = event;
+    this.showListMenu = true;
+    this.showOverlay = true;
+  }
+
   private createDefault() {
+    // region --- example list ---
+    const exampleList = new ToDoList(this.lists.length, "Example list");
+    this.lists.push(exampleList);
+
+    exampleList.parameters.push(
+      new ImageParam("Image"),
+      new TitleParam("Title"),
+      new TextParam("Text"),
+      new CheckBoxParam("Checkbox")
+    );
+    // endregion
+
     for (let listI = 0; listI < 3; listI++) {
       const newList = new ToDoList(this.lists.length, "List " + listI);
       this.lists.push(newList);
@@ -170,12 +189,5 @@ export class AppComponent implements OnInit {
       }
       //endregion*/
     }
-  }
-
-  configureList(event: ToDoList) {
-    this.newList = false;
-    this.menuList = event;
-    this.showListMenu = true;
-    this.showOverlay = true;
   }
 }

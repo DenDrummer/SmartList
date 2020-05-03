@@ -20,6 +20,7 @@ import {CheckboxComponent} from './checkbox/checkbox.component';
 import {MatIconModule} from "@angular/material/icon";
 import {ListMenuComponent} from './list-menu/list-menu.component';
 import {HttpClientModule} from "@angular/common/http";
+import { ParameterMenuComponent } from './list-menu/parameter-menu/parameter-menu.component';
 //import {NgScrollbarModule} from "ngx-scrollbar";
 //import {ScrollingModule} from "@angular/cdk/typings/esm5/scrolling";
 
@@ -36,7 +37,8 @@ import {HttpClientModule} from "@angular/common/http";
     TitleParamCellComponent,
     TextParamCellComponent,
     CheckboxComponent,
-    ListMenuComponent
+    ListMenuComponent,
+    ParameterMenuComponent
   ],
   imports: [
     BrowserModule,

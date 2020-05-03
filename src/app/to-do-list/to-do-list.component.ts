@@ -124,12 +124,18 @@ export class ToDoListComponent implements OnInit, OnChanges {
   }
 
   deleteItem(item: ToDoItem) {
-    //this.itemDeleted.emit(item);
-    this.list.items.splice(
+    //option 1: worst
+    /*this.list.items.splice(
       this.list.items.findIndex(i => {
         return i === item;
       }), 1);
-    this.loadList();
+    this.loadList();*/
+
+    //option 2: better
+    this.list.deleteItem(item);
+
+    //option 3: best?
+    //this.itemDeleted.emit(item);
   }
 
   private loadList() {

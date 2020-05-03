@@ -10,7 +10,8 @@
      id="compactToggle">Compact mode
 </div>
 <div (click)="addItem()"
-     class="button listButton button">+ New item
+     id="newItemButton"
+     class="listButton button">+ New item
 </div>
 
 <table (matSortChange)="sortData($event)"

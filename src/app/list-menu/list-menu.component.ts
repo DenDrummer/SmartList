@@ -32,7 +32,7 @@ export class ListMenuComponent implements OnInit {
   }
 
   removeParam(param: ToDoParam) {
-
+    this.list.removeParam(param);
   }
 
   createList() {
@@ -40,11 +40,23 @@ export class ListMenuComponent implements OnInit {
   }
 
   moveDown(param: ToDoParam) {
-    const param1 = param;
-    this.list.parameters
+    let index: number = this.list.parameters.findIndex((p) => p === param);
+    this.list.swapParams(index, index + 1);
   }
 
   moveUp(param: ToDoParam) {
+    let index: number = this.list.parameters.findIndex((p) => p === param);
+    this.list.swapParams(index, index - 1);
+  }
+
+  updateParamName(param: ToDoParam) {
+    let index: number = this.list.parameters.findIndex((p) => p === param);
+    for (let item of this.list.items) {
+      item.parameters[index].name = param.name;
+    }
+  }
+
+  openParameterMenu() {
 
   }
 }
