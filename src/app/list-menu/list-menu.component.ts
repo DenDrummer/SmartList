@@ -8,18 +8,25 @@ import {ToDoParam} from "../../model/to-do-param";
   styleUrls: ['./list-menu.component.scss']
 })
 export class ListMenuComponent implements OnInit {
+  showParamMenu: boolean = false;
 
+  //region --- Inputs ---
   @Input()
   list: ToDoList;
   @Input()
   newList: boolean;
+  //endregion
 
+  //region --- Outputs ---
   @Output()
   listEditCanceled = new EventEmitter<ToDoList>();
   @Output()
   listEditConfirmed = new EventEmitter<ToDoList>();
   @Output()
   listCreated = new EventEmitter<ToDoList>();
+
+  //endregion
+
 
   constructor() {
   }
@@ -57,6 +64,10 @@ export class ListMenuComponent implements OnInit {
   }
 
   openParameterMenu() {
+    this.showParamMenu = true;
+  }
 
+  createParam($event: ToDoParam) {
+    
   }
 }

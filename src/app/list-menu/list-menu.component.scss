@@ -10,10 +10,83 @@
   max-width: calc(100% - 24px);
 }
 
+#listMenuBlur {
+  z-index: 4;
+}
+
+.blur {
+  z-index: 2;
+  filter: $blur;
+  -o-filter: $blur;
+  -ms-filter: $blur;
+  -moz-filter: $blur;
+  -webkit-filter: $blur;
+}
+
+.overlay {
+  background-color: #0004;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+}
+
 .sortDownButton {
   float: right;
 }
 
 .sortUpButton {
   float: left;
+}
+
+app-param-menu {
+  position: absolute;
+  border-radius: 5px;
+  background-color: $menu-bg;
+}
+
+table {
+  min-width: 200px;
+
+  thead {
+    tr {
+      .smallCol {
+        padding: 2px 0;
+      }
+
+      th {
+        padding: 2px;
+      }
+    }
+  }
+
+  tbody {
+    tr {
+      td {
+        * {
+          margin: 2px;
+
+          * {
+            margin: 0
+          }
+        }
+      }
+    }
+  }
+
+  tfoot {
+    tr {
+      th {
+        position: relative;
+
+        .button {
+          background-color: $button-bg;
+          border-radius: 10px;
+          left: calc(50% - 75px);
+          position: absolute;
+          top: 3px;
+          width: 150px;
+        }
+      }
+    }
+  }
 }

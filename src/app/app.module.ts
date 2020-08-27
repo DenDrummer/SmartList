@@ -20,7 +20,8 @@ import {CheckboxComponent} from './checkbox/checkbox.component';
 import {MatIconModule} from "@angular/material/icon";
 import {ListMenuComponent} from './list-menu/list-menu.component';
 import {HttpClientModule} from "@angular/common/http";
-import { ParameterMenuComponent } from './list-menu/parameter-menu/parameter-menu.component';
+import {MatSelectModule} from "@angular/material/select";
+import { ParamMenuComponent } from './list-menu/param-menu/param-menu.component';
 //import {NgScrollbarModule} from "ngx-scrollbar";
 //import {ScrollingModule} from "@angular/cdk/typings/esm5/scrolling";
 
@@ -38,7 +39,7 @@ import { ParameterMenuComponent } from './list-menu/parameter-menu/parameter-men
     TextParamCellComponent,
     CheckboxComponent,
     ListMenuComponent,
-    ParameterMenuComponent
+    ParamMenuComponent
   ],
   imports: [
     BrowserModule,
@@ -47,7 +48,8 @@ import { ParameterMenuComponent } from './list-menu/parameter-menu/parameter-men
     HttpClientModule,
     MatIconModule,
     MatSortModule,
-    MatTableModule
+    MatTableModule,
+    MatSelectModule,
     //NgScrollbarModule,
     //ScrollingModule
   ],

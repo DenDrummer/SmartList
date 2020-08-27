@@ -52,14 +52,15 @@
     <td (click)="deleteItem(item)"
         [class.expanded]="!compactMode"
         [ngClass]="{oddCol: (list.parameters % 2 == 1), evenCol: (list.parameters % 2 == 0)}"
-        class="trashCell"> <!--TODO: fix color-->
+        class="trashCell">
       <mat-icon>delete</mat-icon>
     </td>
   </tr>
+  <tr><!--empty row to make sure everything looks correct--></tr>
   </tbody>
   <tfoot>
   <tr>
-    <th [attr.colspan]="list.parameters.length + 1">
+    <th [attr.colspan]="list.parameters.length + 2">
       <div (click)="addItem()"
            class="button">+ New item
       </div>

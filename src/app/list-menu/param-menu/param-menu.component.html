@@ -1,0 +1,20 @@
+<mat-select (ngModelChange)="selectType(selectedType)"
+            [(ngModel)]="selectedType"
+            name="Parameter type"
+            required>
+  <mat-option *ngFor="let paramType of paramTypes" [value]="paramType.name">{{paramType.name}}</mat-option>
+</mat-select>
+<div>
+  <h4>Type description</h4>
+  <p>{{getTypeDescription()}}</p>
+</div>
+<div>
+  <label>Parameter name
+    <input [(ngModel)]="paramName"
+           [placeholder]="selectedType"/>
+  </label>
+</div>
+<button (click)="createParameter()"
+        *ngIf="param !== null"
+        id="createParamButton">Create parameter
+</button>

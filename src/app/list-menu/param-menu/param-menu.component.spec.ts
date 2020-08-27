@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ParameterMenuComponent } from './parameter-menu.component';
+import { ParamMenuComponent } from './param-menu.component';
 
-describe('ParameterMenuComponent', () => {
-  let component: ParameterMenuComponent;
-  let fixture: ComponentFixture<ParameterMenuComponent>;
+describe('ParamMenuComponent', () => {
+  let component: ParamMenuComponent;
+  let fixture: ComponentFixture<ParamMenuComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ParameterMenuComponent ]
+      declarations: [ ParamMenuComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ParameterMenuComponent);
+    fixture = TestBed.createComponent(ParamMenuComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

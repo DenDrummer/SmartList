@@ -1,69 +1,76 @@
-<div (click)="cancel()"
-     id="cancelButton">
-  <mat-icon>close</mat-icon>
-</div>
-<div id="listForm">
-  <label>
-    <input [(ngModel)]="list.title"
-           placeholder="List title"
-           type="text"/>
-  </label>
-  <div>
-    <b>Parameters:</b>
-    <table>
-      <thead>
-      <tr>
-        <th class="evenCol">Name</th>
-        <th class="oddCol">Type</th>
-        <th class="evenCol"></th>
-        <th class="oddCol"></th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr *ngFor="let param of list.parameters; let first = first; let last = last; let odd = odd; let even = even;"
-          [class.evenRow]="even"
-          [class.oddRow]="odd">
-        <td class="evenCol">
-          <label>
-            <input (ngModelChange)="updateParamName(param)"
-                   [(ngModel)]="param.name"
-                   placeholder="Parameter name"
-                   type="text"/>
-          </label>
-        </td>
-        <td class="oddCol">
-          <div>{{param.type}}</div>
-        </td>
-        <td class="evenCol">
-          <mat-icon (click)="moveUp(param)"
-                    *ngIf="!first"
-                    class="sortUpButton">keyboard_arrow_up
-          </mat-icon>
-          <mat-icon (click)="moveDown(param)"
-                    *ngIf="!last"
-                    class="sortDownButton">keyboard_arrow_down
-          </mat-icon>
-        </td>
-        <td class="oddCol">
-          <mat-icon (click)="removeParam(param)">delete</mat-icon>
-        </td>
-      </tr>
-      </tbody>
-      <tfoot>
-      <tr>
-        <td colspan="4">
-          <div (click)="openParameterMenu()"
-               id="newParamButton">New parameter
-          </div>
-        </td>
-      </tr>
-      </tfoot>
-    </table>
+<div [class.blur]="showParamMenu"
+     [class.overlay]="showParamMenu"
+     id="listMenuBlur">
+  <div (click)="cancel()"
+       id="cancelButton">
+    <mat-icon>close</mat-icon>
   </div>
-  <div (click)="createList()"
-       *ngIf="newList"
-       id="createListButton">
-    <mat-icon>add</mat-icon>
-    Create new list
+  <div id="listForm">
+    <label>
+      <input [(ngModel)]="list.title"
+             placeholder="List title"
+             type="text"/>
+    </label>
+    <div>
+      <b>Parameters:</b>
+      <table>
+        <thead>
+        <tr>
+          <th class="evenCol">Name</th>
+          <th class="oddCol">Type</th>
+          <th class="evenCol smallCol"></th>
+          <th class="oddCol smallCol"></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let param of list.parameters; let first = first; let last = last; let odd = odd; let even = even;"
+            [class.evenRow]="even"
+            [class.oddRow]="odd">
+          <td class="evenCol">
+            <label>
+              <input (ngModelChange)="updateParamName(param)"
+                     [(ngModel)]="param.name"
+                     placeholder="Parameter name"
+                     type="text"/>
+            </label>
+          </td>
+          <td class="oddCol">
+            <div>{{param.type}}</div>
+          </td>
+          <td class="evenCol">
+            <mat-icon (click)="moveUp(param)"
+                      *ngIf="!first"
+                      class="sortUpButton">keyboard_arrow_up
+            </mat-icon>
+            <mat-icon (click)="moveDown(param)"
+                      *ngIf="!last"
+                      class="sortDownButton">keyboard_arrow_down
+            </mat-icon>
+          </td>
+          <td class="oddCol">
+            <mat-icon (click)="removeParam(param)">delete</mat-icon>
+          </td>
+        </tr>
+        <tr><!--empty row to make sure everything looks correct--></tr>
+        </tbody>
+        <tfoot>
+        <tr>
+          <th colspan="4">
+            <div (click)="openParameterMenu()"
+                 class="button">+ New parameter
+            </div>
+          </th>
+        </tr>
+        </tfoot>
+      </table>
+    </div>
+    <div (click)="createList()"
+         *ngIf="newList"
+         id="createListButton">
+      <mat-icon>add</mat-icon>
+      Create new list
+    </div>
   </div>
 </div>
+<app-param-menu (paramCreated)="createParam($event)"
+                *ngIf="showParamMenu"></app-param-menu>
